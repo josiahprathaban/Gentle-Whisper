@@ -27,7 +27,7 @@ export default defineConfig({
         configFile: 'src/styles/settings.scss',
       },
     }),
-    VitePWA({ registerType: 'autoUpdate' }),
+    VitePWA({ registerType: 'autoUpdate', manifest: false, }),
     Components(),
     Fonts({
       google: {
