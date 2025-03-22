@@ -1,5 +1,8 @@
 <template>
-  <v-footer height="40" app>
+  <v-footer
+    height="40"
+    app
+  >
     <div class="text-caption text-disabled d-flex flex-fill align-center justify-end">
       &copy; {{ new Date().getFullYear() }}
       Gentle Whisper
@@ -10,7 +13,10 @@
         viewBox="0 0 512 512"
       >
         <defs>
-          <symbol id="meteoconsDustWind0" viewBox="0 0 342 234">
+          <symbol
+            id="meteoconsDustWind0"
+            viewBox="0 0 342 234"
+          >
             <path
               fill="none"
               stroke="#e2e8f0"
@@ -46,9 +52,24 @@
           </symbol>
         </defs>
         <g opacity="0">
-          <circle cx="96" cy="196" r="12" fill="#fde68a" />
-          <circle cx="222" cy="256" r="12" fill="#fde68a" />
-          <circle cx="172" cy="316" r="12" fill="#fde68a" />
+          <circle
+            cx="96"
+            cy="196"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="222"
+            cy="256"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="172"
+            cy="316"
+            r="12"
+            fill="#fde68a"
+          />
           <animateTransform
             id="meteoconsDustWind1"
             additive="sum"
@@ -68,9 +89,24 @@
           />
         </g>
         <g opacity="0">
-          <circle cx="180" cy="196" r="12" fill="#fde68a" />
-          <circle cx="306" cy="256" r="12" fill="#fde68a" />
-          <circle cx="256" cy="316" r="12" fill="#fde68a" />
+          <circle
+            cx="180"
+            cy="196"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="306"
+            cy="256"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="256"
+            cy="316"
+            r="12"
+            fill="#fde68a"
+          />
           <animateTransform
             id="meteoconsDustWind3"
             additive="sum"
@@ -90,9 +126,24 @@
           />
         </g>
         <g opacity="0">
-          <circle cx="264" cy="196" r="12" fill="#fde68a" />
-          <circle cx="390" cy="256" r="12" fill="#fde68a" />
-          <circle cx="340" cy="316" r="12" fill="#fde68a" />
+          <circle
+            cx="264"
+            cy="196"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="390"
+            cy="256"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="340"
+            cy="316"
+            r="12"
+            fill="#fde68a"
+          />
           <animateTransform
             id="meteoconsDustWind5"
             additive="sum"

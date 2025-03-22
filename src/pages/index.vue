@@ -19,7 +19,10 @@
       class="mx-auto"
       :loading="loading"
     >
-      <v-list v-model:opened="openGroups" class="py-0">
+      <v-list
+        v-model:opened="openGroups"
+        class="py-0"
+      >
         <v-list-group
           v-for="(items, langId) in groupedBibles"
           :key="langId"
@@ -33,7 +36,10 @@
             </v-list-item>
           </template>
 
-          <v-list-item v-for="item in items" :key="item.id">
+          <v-list-item
+            v-for="item in items"
+            :key="item.id"
+          >
             <v-list-item-title>{{ item.name }}</v-list-item-title>
             <v-list-item-subtitle>
               {{ item.descriptionLocal || "No description" }}
@@ -41,9 +47,15 @@
           </v-list-item>
         </v-list-group>
       </v-list>
-      <div v-if="nodata" class="text-center text-body-2 pa-4">No Items</div>
+      <div
+        v-if="nodata"
+        class="text-center text-body-2 pa-4"
+      >
+        No Items
+      </div>
     </v-card>
   </v-container>
+  <AppFooter />
 </template>
 
 <script>
