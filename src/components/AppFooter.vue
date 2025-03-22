@@ -1,5 +1,5 @@
 <template>
-  <v-footer height="40">
+  <v-footer height="40" app>
     <div class="text-caption text-disabled d-flex flex-fill align-center justify-end">
       &copy; {{ new Date().getFullYear() }}
       Gentle Whisper
