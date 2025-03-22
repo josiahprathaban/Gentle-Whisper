@@ -1,4 +1,8 @@
 {
+  "name": "Gentle Whisper",
+  "short_name": "Gentle Whisper",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
