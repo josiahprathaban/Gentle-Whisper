@@ -6,6 +6,7 @@ import Layouts from 'vite-plugin-vue-layouts'
 import Vue from '@vitejs/plugin-vue'
 import VueRouter from 'unplugin-vue-router/vite'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // Utilities
 import { defineConfig } from 'vite'
@@ -26,6 +27,7 @@ export default defineConfig({
         configFile: 'src/styles/settings.scss',
       },
     }),
+    VitePWA({ registerType: 'autoUpdate' }),
     Components(),
     Fonts({
       google: {
