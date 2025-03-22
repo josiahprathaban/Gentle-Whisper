@@ -1,17 +1,7 @@
 <template>
-  <v-container
-    fluid
-    class="background"
-  >
-    <audio
-      ref="audio"
-      preload="auto"
-      loop
-    >
-      <source
-        src="@/assets/bg.mp3"
-        type="audio/mp3"
-      >
+  <v-container fluid class="background">
+    <audio ref="audio" preload="auto" loop>
+      <source src="@/assets/bg.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
 
@@ -32,6 +22,7 @@
 <script>
 import FlowField from "@/utils/FlowField"; // Adjust the import path accordingly
 import Vector from "@/utils/Vector"; // Adjust the import path accordingly
+import { useGtag } from "vue-gtag-next";
 
 export default {
   data() {
@@ -54,6 +45,11 @@ export default {
     this.initializeCanvas();
     this.setupMouseEvents();
     this.startAnimation();
+    const gtag = useGtag();
+    gtag.event("button_click", {
+      event_category: "User Actions",
+      event_label: "Visit Page",
+    });
   },
   methods: {
     toggleFullScreen() {
