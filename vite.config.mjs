@@ -30,8 +30,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "Gentle Whisperx",
-        short_name: "Gentle Whisperx",
+        name: "Gentle Whisper",
+        short_name: "Gentle Whisper",
         theme_color: "#000000",
         background_color: "#000000",
         icons: [
