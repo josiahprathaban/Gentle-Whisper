@@ -2,6 +2,7 @@
   <v-container>
     <Logo />
     <v-card
+    flat
       color="transparent"
       max-width="600"
       class="mb-6 mx-auto"
@@ -22,7 +23,7 @@
       append-inner-icon="mdi-magnify"
       max-width="600"
       class="mx-auto"
-      variant="outlined"
+      variant="solo"
       @input="filterBibles"
     />
     <v-card

@@ -1,11 +1,7 @@
 <template>
   <v-container>
     <!-- <Logo /> -->
-    <v-card
-      color="transparent"
-      max-width="600"
-      class="mb-6 mx-auto"
-    >
+    <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
       <v-card-title class="text-center px-0">
         {{ bibleInfo.nameLocal + " - " + bibleInfo.abbreviationLocal }}
       </v-card-title>
@@ -19,7 +15,7 @@
       append-inner-icon="mdi-magnify"
       max-width="600"
       class="mx-auto"
-      variant="outlined"
+      variant="solo"
       @change="searchX(false)"
     />
     <v-card
@@ -45,18 +41,11 @@
           {{ verse.text }}
         </v-card-text>
         <v-card-actions>
-          <v-btn size="small">
-            Read Chapter
-          </v-btn>
-          <v-btn size="small">
-            Meditate
-          </v-btn>
+          <v-btn size="small"> Read Chapter </v-btn>
+          <v-btn size="small"> Meditate </v-btn>
         </v-card-actions>
       </v-card>
-      <v-card
-        v-if="nodata"
-        class="text-center text-body-2 pa-4"
-      >
+      <v-card v-if="nodata" class="text-center text-body-2 pa-4">
         Search not found.
       </v-card>
       <div class="text-center py-4">
@@ -69,11 +58,7 @@
         >
           Load More
         </v-btn>
-        <v-btn
-          size="small"
-          class="text-red mx-2"
-          @click="clearSearch"
-        >
+        <v-btn size="small" class="text-red mx-2" @click="clearSearch">
           Clear
         </v-btn>
       </div>
@@ -107,10 +92,7 @@
 
       <v-card-text class="text-body-2 text-justify px-0 my-4">
         <v-divider />
-        <div
-          class="mt-4"
-          v-html="bibleInfo.info"
-        />
+        <div class="mt-4 text-disabled" v-html="bibleInfo.info" />
       </v-card-text>
     </v-card>
   </v-container>
