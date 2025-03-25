@@ -1,137 +1,181 @@
 <template>
   <v-responsive
-      class="mx-auto"
-      max-width="600"
-    >
-  <div class="d-flex align-center justify-center mx-auto my-4">
-    <div>
-      <div class="text-h5">Gentle Whisper</div>
+    class="mx-auto"
+    max-width="600"
+  >
+    <div class="d-flex align-center justify-center mx-auto my-4">
+      <div>
+        <div class="text-h5">
+          Gentle Whisper
+        </div>
 
-      <div class="text-caption">In stillness, His voice is clear.</div>
+        <div class="text-caption">
+          In stillness, His voice is clear.
+        </div>
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="60"
+        height="60"
+        viewBox="0 0 512 512"
+      >
+        <defs>
+          <symbol
+            id="meteoconsDustWind0"
+            viewBox="0 0 342 234"
+          >
+            <path
+              fill="none"
+              stroke="#e2e8f0"
+              stroke-dasharray="148"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="18"
+              d="M264.2 21.3A40 40 0 1 1 293 89H9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                dur="6s"
+                repeatCount="indefinite"
+                values="0; 2960"
+              />
+            </path>
+            <path
+              fill="none"
+              stroke="#e2e8f0"
+              stroke-dasharray="110"
+              stroke-linecap="round"
+              stroke-miterlimit="10"
+              stroke-width="18"
+              d="M148.2 212.7A40 40 0 1 0 177 145H9"
+            >
+              <animate
+                attributeName="stroke-dashoffset"
+                dur="6s"
+                repeatCount="indefinite"
+                values="0; 1540"
+              />
+            </path>
+          </symbol>
+        </defs>
+        <g opacity="0">
+          <circle
+            cx="96"
+            cy="196"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="222"
+            cy="256"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="172"
+            cy="316"
+            r="12"
+            fill="#fde68a"
+          />
+          <animateTransform
+            id="meteoconsDustWind1"
+            additive="sum"
+            attributeName="transform"
+            begin="1s; x1.end+1.17s"
+            dur=".83s"
+            type="translate"
+            values="-24 0; 24 0"
+          />
+          <animate
+            id="meteoconsDustWind2"
+            attributeName="opacity"
+            begin="1s; y1.end+1.17s"
+            dur=".83s"
+            keyTimes="0; .17; .83; 1"
+            values="0; 1; 1; 0"
+          />
+        </g>
+        <g opacity="0">
+          <circle
+            cx="180"
+            cy="196"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="306"
+            cy="256"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="256"
+            cy="316"
+            r="12"
+            fill="#fde68a"
+          />
+          <animateTransform
+            id="meteoconsDustWind3"
+            additive="sum"
+            attributeName="transform"
+            begin=".5s; x2.end+1.17s"
+            dur=".83s"
+            type="translate"
+            values="-24 0; 24 0"
+          />
+          <animate
+            id="meteoconsDustWind4"
+            attributeName="opacity"
+            begin=".5s; y2.end+1.17s"
+            dur=".83s"
+            keyTimes="0; .17; .83; 1"
+            values="0; 1; 1; 0"
+          />
+        </g>
+        <g opacity="0">
+          <circle
+            cx="264"
+            cy="196"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="390"
+            cy="256"
+            r="12"
+            fill="#fde68a"
+          />
+          <circle
+            cx="340"
+            cy="316"
+            r="12"
+            fill="#fde68a"
+          />
+          <animateTransform
+            id="meteoconsDustWind5"
+            additive="sum"
+            attributeName="transform"
+            begin="0s; x3.end+1.17s"
+            dur=".83s"
+            type="translate"
+            values="-24 0; 24 0"
+          />
+          <animate
+            id="meteoconsDustWind6"
+            attributeName="opacity"
+            begin="0s; y3.end+1.17s"
+            dur=".83s"
+            keyTimes="0; .17; .83; 1"
+            values="0; 1; 1; 0"
+          />
+        </g>
+        <use
+          width="342"
+          height="234"
+          href="#meteoconsDustWind0"
+          transform="translate(86 139)"
+        />
+      </svg>
     </div>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="60"
-      height="60"
-      viewBox="0 0 512 512"
-    >
-      <defs>
-        <symbol id="meteoconsDustWind0" viewBox="0 0 342 234">
-          <path
-            fill="none"
-            stroke="#e2e8f0"
-            stroke-dasharray="148"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
-            stroke-width="18"
-            d="M264.2 21.3A40 40 0 1 1 293 89H9"
-          >
-            <animate
-              attributeName="stroke-dashoffset"
-              dur="6s"
-              repeatCount="indefinite"
-              values="0; 2960"
-            />
-          </path>
-          <path
-            fill="none"
-            stroke="#e2e8f0"
-            stroke-dasharray="110"
-            stroke-linecap="round"
-            stroke-miterlimit="10"
-            stroke-width="18"
-            d="M148.2 212.7A40 40 0 1 0 177 145H9"
-          >
-            <animate
-              attributeName="stroke-dashoffset"
-              dur="6s"
-              repeatCount="indefinite"
-              values="0; 1540"
-            />
-          </path>
-        </symbol>
-      </defs>
-      <g opacity="0">
-        <circle cx="96" cy="196" r="12" fill="#fde68a" />
-        <circle cx="222" cy="256" r="12" fill="#fde68a" />
-        <circle cx="172" cy="316" r="12" fill="#fde68a" />
-        <animateTransform
-          id="meteoconsDustWind1"
-          additive="sum"
-          attributeName="transform"
-          begin="1s; x1.end+1.17s"
-          dur=".83s"
-          type="translate"
-          values="-24 0; 24 0"
-        />
-        <animate
-          id="meteoconsDustWind2"
-          attributeName="opacity"
-          begin="1s; y1.end+1.17s"
-          dur=".83s"
-          keyTimes="0; .17; .83; 1"
-          values="0; 1; 1; 0"
-        />
-      </g>
-      <g opacity="0">
-        <circle cx="180" cy="196" r="12" fill="#fde68a" />
-        <circle cx="306" cy="256" r="12" fill="#fde68a" />
-        <circle cx="256" cy="316" r="12" fill="#fde68a" />
-        <animateTransform
-          id="meteoconsDustWind3"
-          additive="sum"
-          attributeName="transform"
-          begin=".5s; x2.end+1.17s"
-          dur=".83s"
-          type="translate"
-          values="-24 0; 24 0"
-        />
-        <animate
-          id="meteoconsDustWind4"
-          attributeName="opacity"
-          begin=".5s; y2.end+1.17s"
-          dur=".83s"
-          keyTimes="0; .17; .83; 1"
-          values="0; 1; 1; 0"
-        />
-      </g>
-      <g opacity="0">
-        <circle cx="264" cy="196" r="12" fill="#fde68a" />
-        <circle cx="390" cy="256" r="12" fill="#fde68a" />
-        <circle cx="340" cy="316" r="12" fill="#fde68a" />
-        <animateTransform
-          id="meteoconsDustWind5"
-          additive="sum"
-          attributeName="transform"
-          begin="0s; x3.end+1.17s"
-          dur=".83s"
-          type="translate"
-          values="-24 0; 24 0"
-        />
-        <animate
-          id="meteoconsDustWind6"
-          attributeName="opacity"
-          begin="0s; y3.end+1.17s"
-          dur=".83s"
-          keyTimes="0; .17; .83; 1"
-          values="0; 1; 1; 0"
-        />
-      </g>
-      <use
-        width="342"
-        height="234"
-        href="#meteoconsDustWind0"
-        transform="translate(86 139)"
-      />
-    </svg>
-  </div>
-  <p class="text-body-2 font-weight-thin text-justify mb-6">
-      Gentle Whisper is a peaceful meditation app designed to help you connect
-      with God through His Word. Select a Bible verse, and immerse yourself in a
-      calming, animated space filled with gentle sounds of peace and stillness.
-      As you reflect on the verse, let the soothing atmosphere and soft music
-      guide your heart and mind to rest in His presence. Gentle Whisper is a
-      sacred space for meditation, prayer, and quiet moments with God.
-    </p>
   </v-responsive>
 </template>

@@ -1,7 +1,21 @@
 <template>
   <v-container>
-    <!-- add a searc bar to searc for a bible using the name or language -->
     <Logo />
+    <v-card
+      color="transparent"
+      max-width="600"
+      class="mb-6 mx-auto"
+    >
+      <v-card-text class="text-body-2 font-weight-thin text-justify pa-0">
+        Gentle Whisper is a peaceful meditation app designed to help you connect
+        with God through His Word. Select a Bible verse, and immerse yourself in
+        a calming, animated space filled with gentle sounds of peace and
+        stillness. As you reflect on the verse, let the soothing atmosphere and
+        soft music guide your heart and mind to rest in His presence. Gentle
+        Whisper is a sacred space for meditation, prayer, and quiet moments with
+        God.
+      </v-card-text>
+    </v-card>
     <v-text-field
       v-model="searchQuery"
       placeholder="Search for a Bible"
@@ -12,47 +26,44 @@
       @input="filterBibles"
     />
     <v-card
-      border
       flat
       max-width="600"
       min-height="4"
       class="mx-auto"
       :loading="loading"
+      color="transparent"
     >
-      <v-list
-        v-model:opened="openGroups"
-        class="py-0"
-      >
-        <v-list-group
+      <v-expansion-panels>
+        <v-expansion-panel
           v-for="(items, langId) in groupedBibles"
           :key="langId"
           :value="langId"
+          :title="items[0].language.nameLocal + '(' + langId + ')'"
         >
-          <template #activator="{ props }">
-            <v-list-item v-bind="props">
-              <v-list-item-title>
-                {{ items[0].language.nameLocal }} ({{ langId }})
+          <v-expansion-panel-text>
+            <v-list-item
+              v-for="item in items"
+              :key="item.id"
+              @click="selectBible(item.id)"
+            >
+              <v-list-item-title class="text-medium-emphasis">
+                {{
+                  item.name
+                }}
               </v-list-item-title>
+              <v-list-item-subtitle class="text-disabled">
+                {{ item.descriptionLocal || "No description" }}
+              </v-list-item-subtitle>
             </v-list-item>
-          </template>
-
-          <v-list-item
-            v-for="item in items"
-            :key="item.id"
-          >
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
-            <v-list-item-subtitle>
-              {{ item.descriptionLocal || "No description" }}
-            </v-list-item-subtitle>
-          </v-list-item>
-        </v-list-group>
-      </v-list>
-      <div
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <v-card
         v-if="nodata"
         class="text-center text-body-2 pa-4"
       >
         No Items
-      </div>
+      </v-card>
     </v-card>
   </v-container>
   <AppFooter />
@@ -115,6 +126,9 @@ export default {
         this.nodata = false;
       }
       this.groupedBibles = this.groupBiblesByLanguage(filteredBibles);
+    },
+    selectBible(id) {
+      this.$router.push(`/bible/${id}`);
     },
   },
 };

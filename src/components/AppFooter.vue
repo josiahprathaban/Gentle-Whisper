@@ -7,7 +7,7 @@
       class="text-caption text-disabled d-flex flex-fill align-center justify-space-between"
     >
       <v-btn
-        to="/test"
+        to="/"
         size="x-small"
         variant="plain"
       >
