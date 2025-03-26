@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <Logo />
-    <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
+    <v-card
+      flat
+      color="transparent"
+      max-width="600"
+      class="mb-6 mx-auto"
+    >
       <v-card-text class="text-body-2 font-weight-thin text-justify pa-0">
         Gentle Whisper is a peaceful meditation app designed to help you connect
         with God through His Word. Select a Bible verse, and immerse yourself in
@@ -14,26 +19,26 @@
     </v-card>
     <v-text-field
       v-model="searchQuery"
+      flat
       placeholder="Search for a Bible"
       append-inner-icon="mdi-magnify"
       max-width="600"
       class="mx-auto"
       variant="solo"
+      clear-icon="mdi-close"
+      clearable
+      :loading="loading"
       @change="filterBibles"
       @click:append-inner="filterBibles"
       @click:clear="filterBibles"
-      clear-icon="mdi-close"
-      clearable
     />
     <v-card
       flat
       max-width="600"
-      min-height="4"
       class="mx-auto"
-      :loading="loading"
       color="transparent"
     >
-      <v-expansion-panels>
+      <v-expansion-panels elevation="0">
         <v-expansion-panel
           v-for="(items, langId) in groupedBibles"
           :key="langId"
@@ -45,10 +50,11 @@
             <v-list-item
               v-for="item in items"
               :key="item.id"
+              rounded
               @click="selectBible(item.id)"
             >
               <v-list-item-title class="text-medium-emphasis">
-                {{ item.name }}
+                {{ item.nameLocal }}
               </v-list-item-title>
               <v-list-item-subtitle class="text-disabled">
                 {{ item.descriptionLocal || "No description" }}
@@ -58,7 +64,10 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-card v-if="nodata" class="text-center text-body-2 pa-4">
+      <v-card
+        v-if="nodata"
+        class="text-center text-body-2 pa-4"
+      >
         No Items
       </v-card>
     </v-card>

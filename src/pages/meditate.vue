@@ -13,8 +13,7 @@
       :height="canvasHeight"
     />
     <div class="verse">
-      நம்பிக்கையிலே சந்தோஷமாயிருங்கள்; உபத்திரவத்திலே பொறுமையாயிருங்கள்;
-      ஜெபத்திலே உறுதியாய்த் தரித்திருங்கள்.
+      {{ verse }}
     </div>
   </v-container>
 </template>
@@ -32,12 +31,18 @@ export default {
       lastStep: 0,
       canvasWidth: 500, // Set default width
       canvasHeight: 500, // Set default height
+      verse: "",
     };
   },
   computed: {
     canvas() {
       return this.$refs.flowFieldCanvas;
     },
+  },
+  created() {
+    if (this.$route.query.verse) {
+      this.verse = this.$route.query.verse;
+    }
   },
   mounted() {
     window.addEventListener("touchstart", this.toggleFullScreen);

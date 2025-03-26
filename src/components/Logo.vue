@@ -13,7 +13,7 @@
           In stillness, His voice is clear.
         </div>
       </div>
-      <svg
+      <!-- <svg
         xmlns="http://www.w3.org/2000/svg"
         width="60"
         height="60"
@@ -175,7 +175,7 @@
           href="#meteoconsDustWind0"
           transform="translate(86 139)"
         />
-      </svg>
+      </svg> -->
     </div>
   </v-responsive>
 </template>

@@ -2,38 +2,45 @@
   <v-container>
     <!-- <Logo /> -->
     <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
-      <v-card-title class="text-center px-0 text-break">
+      <div v-if="bibleInfo.nameLocal" class="text-center px-0 text-h6">
         {{ bibleInfo.nameLocal + " - " + bibleInfo.abbreviationLocal }}
-      </v-card-title>
-      <v-card-subtitle class="text-center px-0 py-0">
+      </div>
+      <div class="text-center px-0 py-0 text-medium-emphasis">
         {{ bibleInfo.descriptionLocal }}
-      </v-card-subtitle>
+      </div>
     </v-card>
     <v-text-field
       v-model="searchQuery"
+      flat
       placeholder="Search keywords or passage reference"
       append-inner-icon="mdi-magnify"
       max-width="600"
       class="mx-auto"
       variant="solo"
+      clearable
+      clear-icon="mdi-close"
+      :loading="loading"
       @change="searchX(false)"
       @click:append-inner="searchX(false)"
+      @click:clear="clearSearch"
     />
+    <v-card
+      v-if="nodata"
+      class="text-center text-body-2 pa-4 mx-auto mb-4 text-medium-emphasis"
+      flat
+      max-width="600"
+    >
+      Search not found. <br />
+      Please refer to the index table or try using different keywords.
+    </v-card>
     <v-card
       v-if="searchResults.length > 0"
       flat
       max-width="600"
-      min-height="4"
       class="mx-auto"
-      :loading="loading"
       color="transparent"
     >
-      <v-card
-        v-for="(verse, id) in searchResults"
-        :key="id"
-        flat
-        class="my-3"
-      >
+      <v-card v-for="verse in searchResults" :key="verse.id" flat class="my-3">
         <v-card-title class="text-subtitle-1">
           {{ verse.reference }}
         </v-card-title>
@@ -41,12 +48,23 @@
           {{ verse.text }}
         </v-card-text>
         <v-card-actions>
-          <v-btn size="small" class="text-disabled"> Read Chapter </v-btn>
-          <v-btn size="small" class="text-disabled"> Meditate </v-btn>
+          <v-btn
+            size="small"
+            class="text-light-blue-darken-3"
+            @click="readChapter(verse)"
+          >
+            Chapter
+            <v-icon class="ms-1"> mdi-book-open-variant-outline </v-icon>
+          </v-btn>
+          <v-btn
+            size="small"
+            class="text-green-darken-3"
+            @click="meditate(verse)"
+          >
+            Meditate
+            <v-icon class="ms-1"> mdi-weather-windy </v-icon>
+          </v-btn>
         </v-card-actions>
-      </v-card>
-      <v-card v-if="nodata" class="text-center text-body-2 pa-4">
-        Search not found.
       </v-card>
       <div class="text-center py-4">
         <v-btn
@@ -63,26 +81,18 @@
         </v-btn>
       </div>
     </v-card>
-    <v-card
-      v-else
-      flat
-      max-width="600"
-      min-height="4"
-      class="mx-auto"
-      :loading="loading"
-      color="transparent"
-    >
-      <v-expansion-panels>
+    <v-card v-else flat max-width="600" class="mx-auto" color="transparent">
+      <v-expansion-panels elevation="0">
         <v-expansion-panel
-          v-for="(book, id) in bibleBooks"
-          :key="id"
+          v-for="book in bibleBooks"
+          :key="book.id"
           :title="book.name"
         >
           <v-expansion-panel-text>
             <v-chip-group column>
               <v-chip
-                v-for="(chapter, id) in book.chapters"
-                :key="id"
+                v-for="chapter in book.chapters"
+                :key="chapter.id"
                 :text="chapter.number"
               />
             </v-chip-group>
@@ -90,9 +100,19 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-card-text class="text-body-2 px-0 my-4">
+      <v-card-text
+        v-if="bibleInfo.info || bibleInfo.copyright"
+        class="text-body-2 px-0 my-4"
+      >
         <v-divider />
-        <div class="mt-4 text-disabled" v-html="bibleInfo.info" />
+        <div
+          v-if="bibleInfo.info"
+          class="mt-4 text-disabled"
+          v-html="bibleInfo.info"
+        />
+        <div v-else>
+          {{ bibleInfo.copyright }}
+        </div>
       </v-card-text>
     </v-card>
   </v-container>
@@ -162,19 +182,17 @@ export default {
           this.searchResults = [];
           this.searchResults = response.verses;
         }
-        if (this.searchResults.length == 0) {
-          this.nodata = true;
-        }
+        this.nodata = this.searchResults.length == 0;
+
         this.isMore = response.total > this.searchResults.length;
         this.loading = false;
       } else {
-        this.nodata = false;
+        this.clearSearch();
       }
     },
     async getBibleInfoX() {
       this.loading = true;
       this.bibleInfo = await getBibleInfo(this.$route.params.id);
-      console.log(this.bibleInfo);
       this.loading = false;
     },
     async getBibleBooksX() {
@@ -183,10 +201,13 @@ export default {
       this.loading = false;
     },
 
-    readChapter(id) {
-      console.log(id);
+    readChapter(verse) {
+      console.log(verse);
     },
-    meditate() {},
+    meditate(verse) {
+      console.log(verse);
+      this.$router.push(`/meditate?verse=${verse.text}`);
+    },
     clearSearch() {
       this.nodata = false;
       this.searchQuery = "";

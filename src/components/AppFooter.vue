@@ -2,24 +2,22 @@
   <v-footer
     height="40"
     app
-    class="d-block pa-0"
+    class="border-t"
   >
-  <v-divider></v-divider>
     <div
-      class="text-caption text-disabled d-flex flex-fill align-center justify-space-between py-1 px-2"
+      class="text-caption text-disabled d-flex flex-fill align-center justify-space-between"
     >
       <v-btn
         to="/"
         size="small"
         variant="plain"
       >
-      <v-icon>mdi-home</v-icon>
-
+        <v-icon>mdi-home</v-icon>
       </v-btn>
       <div class="text-caption text-disabled d-flex align-center">
         &copy; {{ new Date().getFullYear() }}
         Gentle Whisper
-        <svg
+        <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
           height="30"
@@ -181,7 +179,7 @@
             href="#meteoconsDustWind0"
             transform="translate(86 139)"
           />
-        </svg>
+        </svg> -->
       </div>
     </div>
   </v-footer>
