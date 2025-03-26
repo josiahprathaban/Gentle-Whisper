@@ -2,16 +2,19 @@
   <v-footer
     height="40"
     app
+    class="d-block pa-0"
   >
+  <v-divider></v-divider>
     <div
-      class="text-caption text-disabled d-flex flex-fill align-center justify-space-between"
+      class="text-caption text-disabled d-flex flex-fill align-center justify-space-between py-1 px-2"
     >
       <v-btn
         to="/"
-        size="x-small"
+        size="small"
         variant="plain"
       >
-        test
+      <v-icon>mdi-home</v-icon>
+
       </v-btn>
       <div class="text-caption text-disabled d-flex align-center">
         &copy; {{ new Date().getFullYear() }}

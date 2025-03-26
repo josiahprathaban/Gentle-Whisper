@@ -2,7 +2,7 @@
   <v-container>
     <!-- <Logo /> -->
     <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
-      <v-card-title class="text-center px-0">
+      <v-card-title class="text-center px-0 text-break">
         {{ bibleInfo.nameLocal + " - " + bibleInfo.abbreviationLocal }}
       </v-card-title>
       <v-card-subtitle class="text-center px-0 py-0">
@@ -17,6 +17,7 @@
       class="mx-auto"
       variant="solo"
       @change="searchX(false)"
+      @click:append-inner="searchX(false)"
     />
     <v-card
       v-if="searchResults.length > 0"
@@ -30,9 +31,8 @@
       <v-card
         v-for="(verse, id) in searchResults"
         :key="id"
-        border
         flat
-        class="my-4"
+        class="my-3"
       >
         <v-card-title class="text-subtitle-1">
           {{ verse.reference }}
@@ -41,8 +41,8 @@
           {{ verse.text }}
         </v-card-text>
         <v-card-actions>
-          <v-btn size="small"> Read Chapter </v-btn>
-          <v-btn size="small"> Meditate </v-btn>
+          <v-btn size="small" class="text-disabled"> Read Chapter </v-btn>
+          <v-btn size="small" class="text-disabled"> Meditate </v-btn>
         </v-card-actions>
       </v-card>
       <v-card v-if="nodata" class="text-center text-body-2 pa-4">
@@ -90,7 +90,7 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-card-text class="text-body-2 text-justify px-0 my-4">
+      <v-card-text class="text-body-2 px-0 my-4">
         <v-divider />
         <div class="mt-4 text-disabled" v-html="bibleInfo.info" />
       </v-card-text>
@@ -124,12 +124,11 @@ export default {
   },
   async created() {
     if (this.$route.params.id) {
+      await this.getBibleInfoX();
+      await this.getBibleBooksX();
       if (this.$route.query.search) {
         this.searchQuery = this.$route.query.search;
         this.searchX();
-      } else {
-        await this.getBibleInfoX();
-        await this.getBibleBooksX();
       }
     } else {
       this.$router.push("/");
