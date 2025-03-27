@@ -228,7 +228,7 @@ export default {
 
 .is {
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .ip {
@@ -236,7 +236,7 @@ export default {
 }
 
 .iot {
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: bold;
 }
 
