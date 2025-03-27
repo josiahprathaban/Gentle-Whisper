@@ -179,7 +179,7 @@ export const getBibleChapters = async (bibleId) => {
 
 export const getBibleChapterVerses = async (bibleId, chapterId) => {
   if (navigator.onLine) {
-    const url = API_URL + `/v1/bibles/${bibleId}/chapters/${chapterId}?content-type=json&include-titles=false`;
+    const url = API_URL + `/v1/bibles/${bibleId}/chapters/${chapterId}?content-type=html&include-titles=false`;
     const params = {};
     const headers = {};
     const method = "get";

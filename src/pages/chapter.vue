@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <!-- <Logo /> -->
     <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
       <div v-if="bibleInfo.nameLocal" class="text-center px-0 text-h6">
         {{ bibleInfo.nameLocal + " - " + bibleInfo.abbreviationLocal }}
@@ -12,13 +11,17 @@
     <v-card
       flat
       max-width="600"
-      class="mx-auto text-justif"
+      class="mx-auto text-justify"
       color="transparent"
     >
       <div class="text-center px-0 text-h6">
         {{ chapterData.reference }}
       </div>
-      <span
+      <v-card-text>
+        <div class="mt-4" v-html="chapterData.content" />
+      </v-card-text>
+
+      <!-- <span
         v-for="(para, i) in chapterData.content"
         :key="i"
         flat
@@ -37,7 +40,7 @@
             v-else-if="verse.type == 'tag'"
             class="text-medium-emphasis font-italic mx-2"
           >
-            <!-- <v-btn
+            <v-btn
               color="grey-lighten-1"
               variant="text"
               size="x-small"
@@ -45,12 +48,12 @@
             >
               Meditate
               <v-icon class="ms-1"> mdi-weather-windy </v-icon>
-            </v-btn> -->
+            </v-btn>
             <div class="ma-2"></div>
             {{ verse.attrs.number }}
           </sup>
         </span>
-      </span>
+      </span> -->
       <div class="text-center py-4">
         <v-btn size="small" :loading="loading" class="mx-2" flat> Prev </v-btn>
         <v-btn size="small" :loading="loading" class="mx-2" flat> Next </v-btn>
@@ -125,3 +128,27 @@ export default {
   },
 };
 </script>
+<style>
+.cl {
+  display: none;
+}
+
+.v {
+  font-size: smaller;
+  opacity: 0.6;
+  margin-right: 5px;
+  padding-top: 10px;
+}
+
+.v::before {
+  content: "\A";
+  white-space: pre;
+  line-height: 1.5em;
+  display: block;
+}
+
+.wj {
+  color: #ff0000;
+  font-weight: bold;
+}
+</style>
