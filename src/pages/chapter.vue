@@ -17,10 +17,13 @@
       <div class="text-center px-0 text-h6">
         {{ chapterData.reference }}
       </div>
-      <v-card-text class="pa-0">
+      <v-card-text>
         <div class="mt-4" v-html="chapterData.content" />
       </v-card-text>
 
+      <div>
+        {{ chapterData.content }}
+      </div>
       <!-- <span
         v-for="(para, i) in chapterData.content"
         :key="i"
@@ -129,12 +132,16 @@ export default {
 };
 </script>
 <style>
+
+.p{
+  line-height: 1.5em;
+}
 .cl {
   display: none;
 }
 
 .v {
-  font-size: smaller;
+  font-size:x-small;
   opacity: 0.6;
   margin-right: 5px;
 }
@@ -143,7 +150,7 @@ export default {
   content: "\A";
   white-space: pre;
   display: block;
-  line-height: 0.8em;
+  line-height: 1.2em;
 }
 
 /* .wj {
