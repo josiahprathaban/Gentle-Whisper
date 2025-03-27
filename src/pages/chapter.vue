@@ -143,7 +143,7 @@ export default {
   content: "\A";
   white-space: pre;
   display: block;
-  line-height: 0.5em;
+  line-height: 0.8em;
 }
 
 /* .wj {
