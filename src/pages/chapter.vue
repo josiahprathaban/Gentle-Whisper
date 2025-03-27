@@ -1,7 +1,15 @@
 <template>
   <v-container>
-    <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
-      <div v-if="bibleInfo.nameLocal" class="text-center px-0 text-h6">
+    <v-card
+      flat
+      color="transparent"
+      max-width="600"
+      class="mb-6 mx-auto"
+    >
+      <div
+        v-if="bibleInfo.nameLocal"
+        class="text-center px-0 text-h6"
+      >
         {{ bibleInfo.nameLocal + " - " + bibleInfo.abbreviationLocal }}
       </div>
       <div class="text-center px-0 py-0 text-medium-emphasis">
@@ -18,12 +26,15 @@
         {{ chapterData.reference }}
       </div>
       <v-card-text>
-        <div v-html="chapterData.content" />
+        <div
+          ref="content"
+          v-html="chapterData.content"
+        />
       </v-card-text>
-
+      <!--
       <div>
         {{ chapterData.content }}
-      </div>
+      </div> -->
       <!-- <span
         v-for="(para, i) in chapterData.content"
         :key="i"
@@ -63,8 +74,8 @@
           :loading="loading"
           class="mx-2"
           flat
-          @click="prevChap"
           :disabled="!chapterData.previous"
+          @click="prevChap"
         >
           Prev
         </v-btn>
@@ -73,8 +84,8 @@
           :loading="loading"
           class="mx-2"
           flat
-          @click="nextChap"
           :disabled="!chapterData.next"
+          @click="nextChap"
         >
           Next
         </v-btn>
@@ -90,7 +101,10 @@
           class="mt-4 text-disabled"
           v-html="bibleInfo.info"
         />
-        <div v-else class="mt-4 text-disabled">
+        <div
+          v-else
+          class="mt-4 text-disabled"
+        >
           {{ bibleInfo.copyright }}
         </div>
       </v-card-text>
@@ -121,12 +135,20 @@ export default {
       await this.getBibleInfoX();
       await this.getBibleChapterVersesX();
       console.log(this.chapterData);
+      this.addClickEventListeners();
     } else {
       this.$router.push("/");
     }
   },
   mounted() {
     //
+  },
+  beforeUnmount() {
+    const contentElement = this.$refs.content;
+    const verses = contentElement.getElementsByClassName("v");
+    Array.from(verses).forEach((verse) => {
+      verse.removeEventListener("click", this.handleClick);
+    });
   },
   methods: {
     async getBibleInfoX() {
@@ -158,6 +180,22 @@ export default {
         params: { chapterId: this.chapterData.previous.id },
       });
     },
+    addClickEventListeners() {
+      const contentElement = this.$refs.content;
+      const verses = contentElement.getElementsByClassName("v");
+      Array.from(verses).forEach((verse) => {
+        verse.addEventListener("click", this.handleClick);
+      });
+    },
+
+    handleClick(event) {
+      const sid = event.target.getAttribute("data-sid");
+      this.handleVerseClick(sid);
+    },
+
+    handleVerseClick(sid) {
+      console.log("Verse clicked with SID:", sid);
+    },
   },
 };
 </script>
@@ -173,6 +211,7 @@ export default {
   font-size: x-small;
   opacity: 0.6;
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .v::before {
@@ -188,34 +227,33 @@ export default {
 } */
 
 .is {
-    font-weight: bold;
-    font-size: 1em;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 .ip {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .iot {
-    font-size: 1.5em;
-    font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .io1 {
-    font-size: 1em;
-    margin-left: 20px;
-    list-style-type: none;
-    padding-left: 0;
+  font-size: 1em;
+  margin-left: 20px;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .ip {
-    padding: 10px;
-    border-radius: 5px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.is, .iot {
-    padding-bottom: 5px;
+.is,
+.iot {
+  padding-bottom: 5px;
 }
-
-
 </style>
