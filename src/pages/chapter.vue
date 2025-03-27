@@ -17,7 +17,7 @@
       <div class="text-center px-0 text-h6">
         {{ chapterData.reference }}
       </div>
-      <v-card-text>
+      <v-card-text class="pa-0">
         <div class="mt-4" v-html="chapterData.content" />
       </v-card-text>
 
