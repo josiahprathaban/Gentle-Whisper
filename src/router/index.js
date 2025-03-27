@@ -11,10 +11,14 @@ import { routes } from 'vue-router/auto-routes'
 
 const customRoutes = [
   {
-    path: '/bible/:id',
+    path: '/bible/:bibleId',
     name: 'Bible',
     component: () => import('@/pages/bible.vue'),
-    // props: true,
+  },
+  {
+    path: '/bible/:bibleId/:chapterId',
+    name: 'Chapter',
+    component: () => import('@/pages/chapter.vue'),
   }
 ]
 

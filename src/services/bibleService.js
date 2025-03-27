@@ -142,3 +142,71 @@ export const getBibleBooks = async (bibleId) => {
     // store.commit("setError", { isError: true, error: "You are offline." });
   }
 };
+
+export const getBibleChapters = async (bibleId) => {
+  if (navigator.onLine) {
+    const url = API_URL + `/v1/bibles/${bibleId}/books?include-chapters=true`;
+    const params = {};
+    const headers = {};
+    const method = "get";
+
+    try {
+      const response = await axiosInstance({
+        method,
+        url,
+        data: params,
+        headers: {
+          ...headers,
+        },
+      });
+
+      if (response.data == null) {
+        // store.commit("setError", { isError: true, error: "Item not found." });
+      } else if (response.data.error) {
+        // store.commit("setError", { isError: true, error: response.data.error });
+      } else {
+        const data = response.data.data;
+        return data;
+      }
+    } catch (error) {
+      console.error(`Failed to fetch data:`, error);
+      // store.commit("setError", { isError: true, error: error });
+    }
+  } else {
+    // store.commit("setError", { isError: true, error: "You are offline." });
+  }
+};
+
+export const getBibleChapterVerses = async (bibleId, chapterId) => {
+  if (navigator.onLine) {
+    const url = API_URL + `/v1/bibles/${bibleId}/chapters/${chapterId}?content-type=json&include-verse-numbers=true`;
+    const params = {};
+    const headers = {};
+    const method = "get";
+
+    try {
+      const response = await axiosInstance({
+        method,
+        url,
+        data: params,
+        headers: {
+          ...headers,
+        },
+      });
+
+      if (response.data == null) {
+        // store.commit("setError", { isError: true, error: "Item not found." });
+      } else if (response.data.error) {
+        // store.commit("setError", { isError: true, error: response.data.error });
+      } else {
+        const data = response.data.data;
+        return data;
+      }
+    } catch (error) {
+      console.error(`Failed to fetch data:`, error);
+      // store.commit("setError", { isError: true, error: error });
+    }
+  } else {
+    // store.commit("setError", { isError: true, error: "You are offline." });
+  }
+};

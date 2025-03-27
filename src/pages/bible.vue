@@ -48,19 +48,11 @@
           {{ verse.text }}
         </v-card-text>
         <v-card-actions>
-          <v-btn
-            size="small"
-            class="text-light-blue-darken-3"
-            @click="readChapter(verse)"
-          >
-            Chapter
+          <v-btn size="small" color="grey" @click="readChapter(verse)">
+            Read Chapter
             <v-icon class="ms-1"> mdi-book-open-variant-outline </v-icon>
           </v-btn>
-          <v-btn
-            size="small"
-            class="text-green-darken-3"
-            @click="meditate(verse)"
-          >
+          <v-btn color="grey-lighten-1" size="small" @click="meditate(verse)">
             Meditate
             <v-icon class="ms-1"> mdi-weather-windy </v-icon>
           </v-btn>
@@ -72,11 +64,12 @@
           size="small"
           :loading="loading"
           class="mx-2"
+          flat
           @click="searchX(true)"
         >
           Load More
         </v-btn>
-        <v-btn size="small" class="text-red mx-2" @click="clearSearch">
+        <v-btn flat size="small" class="text-red mx-2" @click="clearSearch">
           Clear
         </v-btn>
       </div>
@@ -94,6 +87,7 @@
                 v-for="chapter in book.chapters"
                 :key="chapter.id"
                 :text="chapter.number"
+                rounded="sm"
               />
             </v-chip-group>
           </v-expansion-panel-text>
@@ -110,7 +104,7 @@
           class="mt-4 text-disabled"
           v-html="bibleInfo.info"
         />
-        <div v-else>
+        <div v-else class="mt-4 text-disabled">
           {{ bibleInfo.copyright }}
         </div>
       </v-card-text>
@@ -143,7 +137,7 @@ export default {
     //
   },
   async created() {
-    if (this.$route.params.id) {
+    if (this.$route.params.bibleId) {
       await this.getBibleInfoX();
       await this.getBibleBooksX();
       if (this.$route.query.search) {
@@ -172,7 +166,7 @@ export default {
         }
         this.loading = true;
         let response = await search(
-          this.$route.params.id,
+          this.$route.params.bibleId,
           this.searchQuery,
           this.offset
         );
@@ -192,17 +186,18 @@ export default {
     },
     async getBibleInfoX() {
       this.loading = true;
-      this.bibleInfo = await getBibleInfo(this.$route.params.id);
+      this.bibleInfo = await getBibleInfo(this.$route.params.bibleId);
       this.loading = false;
     },
     async getBibleBooksX() {
       this.loading = true;
-      this.bibleBooks = await getBibleBooks(this.$route.params.id);
+      this.bibleBooks = await getBibleBooks(this.$route.params.bibleId);
       this.loading = false;
     },
 
     readChapter(verse) {
-      console.log(verse);
+      console.log(verse)
+      this.$router.push({ name: "Chapter", params: { chapterId: verse.chapterId } });
     },
     meditate(verse) {
       console.log(verse);

@@ -1,12 +1,7 @@
 <template>
   <v-container>
     <Logo />
-    <v-card
-      flat
-      color="transparent"
-      max-width="600"
-      class="mb-6 mx-auto"
-    >
+    <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
       <v-card-text class="text-body-2 font-weight-thin text-justify pa-0">
         Gentle Whisper is a peaceful meditation app designed to help you connect
         with God through His Word. Select a Bible verse, and immerse yourself in
@@ -32,12 +27,7 @@
       @click:append-inner="filterBibles"
       @click:clear="filterBibles"
     />
-    <v-card
-      flat
-      max-width="600"
-      class="mx-auto"
-      color="transparent"
-    >
+    <v-card flat max-width="600" class="mx-auto" color="transparent">
       <v-expansion-panels elevation="0">
         <v-expansion-panel
           v-for="(items, langId) in groupedBibles"
@@ -53,9 +43,9 @@
               rounded
               @click="selectBible(item.id)"
             >
-              <v-list-item-title class="text-medium-emphasis">
+              <div class="text-medium-emphasis">
                 {{ item.nameLocal }}
-              </v-list-item-title>
+              </div>
               <v-list-item-subtitle class="text-disabled">
                 {{ item.descriptionLocal || "No description" }}
               </v-list-item-subtitle>
@@ -64,10 +54,7 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-card
-        v-if="nodata"
-        class="text-center text-body-2 pa-4"
-      >
+      <v-card v-if="nodata" class="text-center text-body-2 pa-4">
         No Items
       </v-card>
     </v-card>
@@ -138,7 +125,7 @@ export default {
       }
     },
     selectBible(id) {
-      this.$router.push(`/bible/${id}`);
+      this.$router.push({ name: "Bible", params: { bibleId: id } });
     },
   },
 };
