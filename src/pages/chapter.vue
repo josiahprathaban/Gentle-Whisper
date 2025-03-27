@@ -227,7 +227,6 @@ export default {
 } */
 
 .is {
-  font-weight: bold;
   font-size: 1.1em;
 }
 
@@ -236,8 +235,7 @@ export default {
 }
 
 .iot {
-  font-size: 1.1em;
-  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .io1 {
@@ -248,7 +246,7 @@ export default {
 }
 
 .ip {
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
 }
 
