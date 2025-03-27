@@ -48,7 +48,11 @@
           {{ verse.text }}
         </v-card-text>
         <v-card-actions>
-          <v-btn size="small" color="grey" @click="readChapter(verse)">
+          <v-btn
+            size="small"
+            color="grey"
+            @click="readChapter(verse.chapterId)"
+          >
             Read Chapter
             <v-icon class="ms-1"> mdi-book-open-variant-outline </v-icon>
           </v-btn>
@@ -88,6 +92,7 @@
                 :key="chapter.id"
                 :text="chapter.number"
                 rounded="sm"
+                @click="readChapter(chapter.id)"
               />
             </v-chip-group>
           </v-expansion-panel-text>
@@ -195,9 +200,8 @@ export default {
       this.loading = false;
     },
 
-    readChapter(verse) {
-      console.log(verse)
-      this.$router.push({ name: "Chapter", params: { chapterId: verse.chapterId } });
+    readChapter(chapterId) {
+      this.$router.push({ name: "Chapter", params: { chapterId: chapterId } });
     },
     meditate(verse) {
       console.log(verse);

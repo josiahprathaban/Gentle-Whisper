@@ -4,16 +4,12 @@
     app
     class="border-t"
   >
-    <div
-      class="d-flex flex-fill align-center justify-space-between"
-    >
+    <div class="d-flex flex-fill align-center justify-space-between">
       <v-btn
+        icon="mdi-arrow-left"
         size="small"
-        variant="plain"
         @click="goBack"
-      >
-        <v-icon>mdi-arrow-left</v-icon>
-      </v-btn>
+      />
       <div class="text-caption text-disabled d-flex align-center">
         &copy; {{ new Date().getFullYear() }}
         Gentle Whisper

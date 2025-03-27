@@ -12,7 +12,7 @@
     <v-card
       flat
       max-width="600"
-      class="mx-auto text-justify"
+      class="mx-auto text-justif"
       color="transparent"
     >
       <div class="text-center px-0 text-h6">
