@@ -137,18 +137,17 @@ export default {
   font-size: smaller;
   opacity: 0.6;
   margin-right: 5px;
-  padding-top: 10px;
 }
 
 .v::before {
   content: "\A";
   white-space: pre;
-  line-height: 1.5em;
   display: block;
+  line-height: 0.5em;
 }
 
-.wj {
+/* .wj {
   color: #ff0000;
   font-weight: bold;
-}
+} */
 </style>
