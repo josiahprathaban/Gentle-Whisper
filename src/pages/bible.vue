@@ -204,7 +204,6 @@ export default {
       this.$router.push({ name: "Chapter", params: { chapterId: chapterId } });
     },
     meditate(verse) {
-      console.log(verse);
       this.$router.push(`/meditate?verse=${verse.text}`);
     },
     clearSearch() {

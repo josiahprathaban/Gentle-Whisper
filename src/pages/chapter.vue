@@ -18,7 +18,7 @@
         {{ chapterData.reference }}
       </div>
       <v-card-text>
-        <div class="mt-4" v-html="chapterData.content" />
+        <div v-html="chapterData.content" />
       </v-card-text>
 
       <div>
@@ -58,8 +58,26 @@
         </span>
       </span> -->
       <div class="text-center py-4">
-        <v-btn size="small" :loading="loading" class="mx-2" flat> Prev </v-btn>
-        <v-btn size="small" :loading="loading" class="mx-2" flat> Next </v-btn>
+        <v-btn
+          size="small"
+          :loading="loading"
+          class="mx-2"
+          flat
+          @click="prevChap"
+          :disabled="!chapterData.previous"
+        >
+          Prev
+        </v-btn>
+        <v-btn
+          size="small"
+          :loading="loading"
+          class="mx-2"
+          flat
+          @click="nextChap"
+          :disabled="!chapterData.next"
+        >
+          Next
+        </v-btn>
       </div>
 
       <v-card-text
@@ -128,12 +146,23 @@ export default {
       console.log(verse);
       this.$router.push(`/meditate?verse=${verse.text}`);
     },
+    nextChap() {
+      this.$router.push({
+        name: "Chapter",
+        params: { chapterId: this.chapterData.next.id },
+      });
+    },
+    prevChap() {
+      this.$router.push({
+        name: "Chapter",
+        params: { chapterId: this.chapterData.previous.id },
+      });
+    },
   },
 };
 </script>
 <style>
-
-.p{
+.p {
   line-height: 1.5em;
 }
 .cl {
@@ -141,7 +170,7 @@ export default {
 }
 
 .v {
-  font-size:x-small;
+  font-size: x-small;
   opacity: 0.6;
   margin-right: 5px;
 }
@@ -157,4 +186,36 @@ export default {
   color: #ff0000;
   font-weight: bold;
 } */
+
+.is {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.ip {
+    margin-bottom: 10px;
+}
+
+.iot {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.io1 {
+    font-size: 1em;
+    margin-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.ip {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.is, .iot {
+    padding-bottom: 5px;
+}
+
+
 </style>
