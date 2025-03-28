@@ -263,7 +263,7 @@ export default {
   backdrop-filter: blur(30px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0 10px;
-  border-radius: 300px;
+  border-radius: 30px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
