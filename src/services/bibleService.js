@@ -210,3 +210,37 @@ export const getBibleChapterVerses = async (bibleId, chapterId) => {
     // store.commit("setError", { isError: true, error: "You are offline." });
   }
 };
+
+export const getBibleVerse = async (bibleId, verseId) => {
+  if (navigator.onLine) {
+    const url = API_URL + `/v1/bibles/${bibleId}/verses/${verseId}?content-type=text&include-titles=false&include-verse-numbers=false`;
+    const params = {};
+    const headers = {};
+    const method = "get";
+
+    try {
+      const response = await axiosInstance({
+        method,
+        url,
+        data: params,
+        headers: {
+          ...headers,
+        },
+      });
+
+      if (response.data == null) {
+        // store.commit("setError", { isError: true, error: "Item not found." });
+      } else if (response.data.error) {
+        // store.commit("setError", { isError: true, error: response.data.error });
+      } else {
+        const data = response.data.data;
+        return data;
+      }
+    } catch (error) {
+      console.error(`Failed to fetch data:`, error);
+      // store.commit("setError", { isError: true, error: error });
+    }
+  } else {
+    // store.commit("setError", { isError: true, error: "You are offline." });
+  }
+};

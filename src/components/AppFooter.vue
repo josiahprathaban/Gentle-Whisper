@@ -1,10 +1,14 @@
 <template>
-  <v-footer height="40" app class="border-t">
+  <v-footer
+    height="40"
+    app
+    class="border-t"
+  >
     <div class="d-flex flex-fill align-center justify-space-between">
       <v-btn
         class="px-0"
         flat
-        icon="mdi-arrow-left"
+        icon="mdi-bookshelf"
         size="small"
         @click="goBack"
       />
@@ -33,7 +37,8 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.go(-1);
+      // this.$router.go(-1);
+      this.$router.push("/");
     },
   },
 };

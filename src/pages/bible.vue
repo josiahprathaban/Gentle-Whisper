@@ -1,8 +1,16 @@
 <template>
   <v-container>
     <!-- <Logo /> -->
-    <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
-      <div v-if="bibleInfo.nameLocal" class="text-center px-0 text-h6">
+    <v-card
+      flat
+      color="transparent"
+      max-width="600"
+      class="mb-6 mx-auto"
+    >
+      <div
+        v-if="bibleInfo.nameLocal"
+        class="text-center px-0 text-h6"
+      >
         {{ bibleInfo.nameLocal + " - " + bibleInfo.abbreviationLocal }}
       </div>
       <div class="text-center px-0 py-0 text-medium-emphasis">
@@ -30,7 +38,7 @@
       flat
       max-width="600"
     >
-      Search not found. <br />
+      Search not found. <br>
       Please refer to the index table or try using different keywords.
     </v-card>
     <v-card
@@ -40,7 +48,12 @@
       class="mx-auto"
       color="transparent"
     >
-      <v-card v-for="verse in searchResults" :key="verse.id" flat class="my-3">
+      <v-card
+        v-for="verse in searchResults"
+        :key="verse.id"
+        flat
+        class="my-3"
+      >
         <v-card-title class="text-subtitle-1">
           {{ verse.reference }}
         </v-card-title>
@@ -54,11 +67,19 @@
             @click="readChapter(verse.chapterId)"
           >
             Read Chapter
-            <v-icon class="ms-1"> mdi-book-open-variant-outline </v-icon>
+            <v-icon class="ms-1">
+              mdi-book-open-variant-outline
+            </v-icon>
           </v-btn>
-          <v-btn color="grey-lighten-1" size="small" @click="meditate(verse)">
+          <v-btn
+            color="grey-lighten-1"
+            size="small"
+            @click="meditate(verse.id)"
+          >
             Meditate
-            <v-icon class="ms-1"> mdi-weather-windy </v-icon>
+            <v-icon class="ms-1">
+              mdi-weather-windy
+            </v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -73,12 +94,23 @@
         >
           Load More
         </v-btn>
-        <v-btn flat size="small" class="text-red mx-2" @click="clearSearch">
+        <v-btn
+          flat
+          size="small"
+          class="text-red mx-2"
+          @click="clearSearch"
+        >
           Clear
         </v-btn>
       </div>
     </v-card>
-    <v-card v-else flat max-width="600" class="mx-auto" color="transparent">
+    <v-card
+      v-else
+      flat
+      max-width="600"
+      class="mx-auto"
+      color="transparent"
+    >
       <v-expansion-panels elevation="0">
         <v-expansion-panel
           v-for="book in bibleBooks"
@@ -109,7 +141,10 @@
           class="mt-4 text-disabled"
           v-html="bibleInfo.info"
         />
-        <div v-else class="mt-4 text-disabled">
+        <div
+          v-else
+          class="mt-4 text-disabled"
+        >
           {{ bibleInfo.copyright }}
         </div>
       </v-card-text>
@@ -203,8 +238,8 @@ export default {
     readChapter(chapterId) {
       this.$router.push({ name: "Chapter", params: { chapterId: chapterId } });
     },
-    meditate(verse) {
-      this.$router.push(`/meditate?verse=${verse.text}`);
+    meditate(verseId) {
+      this.$router.push({ name: "Meditate", params: { verseId: verseId } });
     },
     clearSearch() {
       this.nodata = false;
@@ -213,6 +248,10 @@ export default {
       this.$router.replace({
         query: { ...this.$route.query, search: this.searchQuery },
       });
+      this.scrollToTop();
+    },
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     },
   },
 };

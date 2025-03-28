@@ -1,10 +1,8 @@
 <template>
-  <v-container fluid class="background">
-    <audio ref="audio" preload="auto" loop>
-      <source src="@/assets/bg.mp3" type="audio/mp3" />
-      Your browser does not support the audio element.
-    </audio>
-
+  <v-container
+    fluid
+    class="background"
+  >
     <canvas
       id="flowfield"
       ref="flowFieldCanvas"
@@ -12,9 +10,7 @@
       :width="canvasWidth"
       :height="canvasHeight"
     />
-    <div class="verse">
-      {{ verse }}
-    </div>
+    <Player />
   </v-container>
 </template>
 
@@ -45,8 +41,6 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener("touchstart", this.toggleFullScreen);
-    window.addEventListener("click", this.toggleFullScreen);
     this.initializeCanvas();
     this.setupMouseEvents();
     this.startAnimation();
@@ -57,40 +51,6 @@ export default {
     });
   },
   methods: {
-    toggleFullScreen() {
-      const audio = this.$refs.audio;
-      if (!document.fullscreenElement) {
-        // If not in full-screen mode, request full-screen
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen();
-        } else if (document.documentElement.mozRequestFullScreen) {
-          // Firefox
-          document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          // Chrome, Safari
-          document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.msRequestFullscreen) {
-          // IE/Edge
-          document.documentElement.msRequestFullscreen();
-        }
-        audio.play();
-      } else {
-        // If in full-screen mode, exit full-screen
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          // Firefox
-          document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-          // Chrome, Safari
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          // IE/Edge
-          document.msExitFullscreen();
-        }
-        audio.pause();
-      }
-    },
     // Initialize canvas and flowfield
     initializeCanvas() {
       const canvas = this.canvas;

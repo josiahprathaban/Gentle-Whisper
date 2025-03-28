@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <Logo />
-    <v-card flat color="transparent" max-width="600" class="mb-6 mx-auto">
+    <v-card
+      flat
+      color="transparent"
+      max-width="600"
+      class="mb-6 mx-auto"
+    >
       <v-card-text class="text-body-2 font-weight-thin text-justify pa-0">
         Gentle Whisper is a peaceful meditation app designed to help you connect
         with God through His Word. Select a Bible verse, and immerse yourself in
@@ -27,7 +32,12 @@
       @click:append-inner="filterBibles"
       @click:clear="filterBibles"
     />
-    <v-card flat max-width="600" class="mx-auto" color="transparent">
+    <v-card
+      flat
+      max-width="600"
+      class="mx-auto"
+      color="transparent"
+    >
       <v-expansion-panels elevation="0">
         <v-expansion-panel
           v-for="(items, langId) in groupedBibles"
@@ -54,7 +64,10 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-card v-if="nodata" class="text-center text-body-2 pa-4">
+      <v-card
+        v-if="nodata"
+        class="text-center text-body-2 pa-4"
+      >
         No Items
       </v-card>
     </v-card>

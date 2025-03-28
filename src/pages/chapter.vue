@@ -70,6 +70,7 @@
       </span> -->
       <div class="text-center py-4">
         <v-btn
+          v-if="!loading"
           size="small"
           :loading="loading"
           class="mx-2"
@@ -77,9 +78,17 @@
           :disabled="!chapterData.previous"
           @click="prevChap"
         >
+          <v-icon>mdi-chevron-left</v-icon>
           Prev
         </v-btn>
         <v-btn
+          :loading="loading"
+          class="mx-2"
+          icon="mdi-book-open-variant-outline"
+          @click="allBooks"
+        />
+        <v-btn
+          v-if="!loading"
           size="small"
           :loading="loading"
           class="mx-2"
@@ -88,6 +97,7 @@
           @click="nextChap"
         >
           Next
+          <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </div>
 
@@ -134,7 +144,6 @@ export default {
     if (this.$route.params.bibleId && this.$route.params.chapterId) {
       await this.getBibleInfoX();
       await this.getBibleChapterVersesX();
-      console.log(this.chapterData);
       this.addClickEventListeners();
     } else {
       this.$router.push("/");
@@ -144,11 +153,7 @@ export default {
     //
   },
   beforeUnmount() {
-    const contentElement = this.$refs.content;
-    const verses = contentElement.getElementsByClassName("v");
-    Array.from(verses).forEach((verse) => {
-      verse.removeEventListener("click", this.handleClick);
-    });
+    this.removeClickEventListeners();
   },
   methods: {
     async getBibleInfoX() {
@@ -164,20 +169,27 @@ export default {
       );
       this.loading = false;
     },
-    meditate(verse) {
-      console.log(verse);
-      this.$router.push(`/meditate?verse=${verse.text}`);
-    },
-    nextChap() {
-      this.$router.push({
-        name: "Chapter",
+    async nextChap() {
+      await this.$router.replace({
         params: { chapterId: this.chapterData.next.id },
       });
+      this.removeClickEventListeners();
+      await this.getBibleChapterVersesX();
+      this.addClickEventListeners();
+      this.scrollToTop();
     },
-    prevChap() {
-      this.$router.push({
-        name: "Chapter",
+    async prevChap() {
+      await this.$router.replace({
         params: { chapterId: this.chapterData.previous.id },
+      });
+      this.removeClickEventListeners();
+      await this.getBibleChapterVersesX();
+      this.addClickEventListeners();
+      this.scrollToTop();
+    },
+    allBooks() {
+      this.$router.push({
+        name: "Bible",
       });
     },
     addClickEventListeners() {
@@ -187,14 +199,22 @@ export default {
         verse.addEventListener("click", this.handleClick);
       });
     },
-
-    handleClick(event) {
-      const sid = event.target.getAttribute("data-sid");
-      this.handleVerseClick(sid);
+    removeClickEventListeners() {
+      const contentElement = this.$refs.content;
+      const verses = contentElement.getElementsByClassName("v");
+      Array.from(verses).forEach((verse) => {
+        verse.removeEventListener("click", this.handleClick);
+      });
     },
-
-    handleVerseClick(sid) {
-      console.log("Verse clicked with SID:", sid);
+    handleClick(event) {
+      const number = event.target.getAttribute("data-number");
+      this.meditate(`${this.chapterData.id}.${number}`);
+    },
+    meditate(verseId) {
+      this.$router.push({ name: "Meditate", params: { verseId: verseId } });
+    },
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     },
   },
 };

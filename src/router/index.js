@@ -19,6 +19,11 @@ const customRoutes = [
     path: '/bible/:bibleId/:chapterId',
     name: 'Chapter',
     component: () => import('@/pages/chapter.vue'),
+  },
+  {
+    path: '/bible/:bibleId/meditate/:verseId',
+    name: 'Meditate',
+    component: () => import('@/pages/meditate.vue'),
   }
 ]
 
