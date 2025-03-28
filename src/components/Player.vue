@@ -264,10 +264,10 @@ export default {
   background: rgba(255, 255, 255, 0.138);
   backdrop-filter: blur(30px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0 10px;
+  padding: 5px;
   border-radius: 30px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
   height: 100%;
   justify-content: center;

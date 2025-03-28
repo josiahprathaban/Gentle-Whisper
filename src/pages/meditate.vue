@@ -160,19 +160,4 @@ export default {
   width: 12.5%;
   transform: translate(-50%, -50%) scale(8);
 }
-
-.verse {
-  width: 100vw;
-  padding: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 600px;
-  text-align: center;
-  font-family: "Baloo Thambi 2", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
 </style>
