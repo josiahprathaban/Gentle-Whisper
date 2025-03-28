@@ -26,6 +26,7 @@
             icon="mdi-bookshelf"
             to="/"
             :loading="loading"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-if="!loading"
@@ -33,6 +34,7 @@
             icon="mdi-book-open-variant-outline"
             :loading="loading"
             @click="allBooks"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-if="!loading"
@@ -41,10 +43,11 @@
             :loading="loading"
             :disabled="!verseData.previous"
             @click="prevVerse"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <div
             v-if="!loading"
-            class="text-caption"
+            class="text-caption text-center"
           >
             {{ verseData.reference }}
           </div>
@@ -55,6 +58,7 @@
             :loading="loading"
             :disabled="!verseData.next"
             @click="nextVerse"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-if="!isPlaying && !loading"
@@ -62,6 +66,7 @@
             icon="mdi-play"
             :loading="loading"
             @click="playAudio"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-else-if="!loading"
@@ -69,6 +74,7 @@
             icon="mdi-pause"
             :loading="loading"
             @click="pauseAudio"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-if="isFullScreen && !loading"
@@ -76,6 +82,7 @@
             icon="mdi-fullscreen-exit"
             :loading="loading"
             @click="exitFullScreen"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-else-if="!loading"
@@ -83,6 +90,7 @@
             icon="mdi-fullscreen"
             :loading="loading"
             @click="enterFullScreen"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-if="isPlaying && !loading"
@@ -90,6 +98,7 @@
             icon="mdi-volume-high"
             :loading="loading"
             @click="toggleAudio"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
           <v-btn
             v-else-if="!loading"
@@ -97,6 +106,7 @@
             icon="mdi-volume-off"
             :loading="loading"
             @click="toggleAudio"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
           />
         </div>
       </div>
