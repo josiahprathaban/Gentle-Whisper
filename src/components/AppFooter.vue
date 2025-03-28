@@ -6,12 +6,14 @@
   >
     <div class="d-flex flex-fill align-center justify-space-between">
       <v-btn
-        class="px-0"
-        flat
-        icon="mdi-bookshelf"
+        class="px-1 text-capitalize text-caption font-weight-light"
         size="small"
         @click="goBack"
-      />
+        variant="text"
+        color="grey-lighten-2"
+      >
+<v-icon class="me-1 mb-1">mdi-bookshelf</v-icon> Bible Library
+    </v-btn>
       <div class="text-caption text-disabled d-flex align-center">
         &copy; {{ new Date().getFullYear() }}
         Gentle Whisper

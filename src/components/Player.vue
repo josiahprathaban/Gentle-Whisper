@@ -1,18 +1,7 @@
 <template>
-  <v-responsive
-    class="mx-auto"
-    max-width="600"
-    height="100%"
-  >
-    <audio
-      ref="audio"
-      preload="auto"
-      loop
-    >
-      <source
-        src="@/assets/bg.mp3"
-        type="audio/mp3"
-      >
+  <v-responsive class="mx-auto" max-width="600" height="100%">
+    <audio ref="audio" preload="auto" loop>
+      <source src="@/assets/bg.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
     <div class="player-container">
@@ -22,14 +11,15 @@
       <div class="player-controller">
         <div class="controll-panel">
           <v-btn
+            v-if="!loading"
             variant="text"
             icon="mdi-bookshelf"
-            to="/"
+            @click="home"
             :loading="loading"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            class="d-none d-sm-inline"
           />
           <v-btn
-            v-if="!loading"
             variant="text"
             icon="mdi-book-open-variant-outline"
             :loading="loading"
@@ -45,10 +35,7 @@
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
             @click="prevVerse"
           />
-          <div
-            v-if="!loading"
-            class="text-caption text-center"
-          >
+          <div v-if="!loading" class="text-caption text-center">
             {{ verseData.reference }}
           </div>
           <v-btn
@@ -83,6 +70,7 @@
             :loading="loading"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
             @click="exitFullScreen"
+            class="d-none d-sm-inline"
           />
           <v-btn
             v-else-if="!loading"
@@ -91,6 +79,7 @@
             :loading="loading"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
             @click="enterFullScreen"
+            class="d-none d-sm-inline"
           />
           <v-btn
             v-if="isPlaying && !loading"
@@ -99,6 +88,7 @@
             :loading="loading"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
             @click="toggleAudio"
+            class="d-none d-sm-inline"
           />
           <v-btn
             v-else-if="!loading"
@@ -107,6 +97,7 @@
             :loading="loading"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
             @click="toggleAudio"
+            class="d-none d-sm-inline"
           />
           <v-btn
             v-if="!loading"
@@ -115,6 +106,16 @@
             :loading="loading"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
             @click="shareContent"
+            class="d-inline d-sm-none"
+          />
+          <v-btn
+            v-if="!loading"
+            variant="text"
+            icon="mdi-link-variant"
+            :loading="loading"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="shareContent"
+            class="d-none d-sm-inline"
           />
         </div>
       </div>
@@ -202,6 +203,9 @@ export default {
       this.$router.push({
         name: "Bible",
       });
+    },
+    home() {
+      this.$router.push("/");
     },
     async nextVerse() {
       await this.$router.replace({
