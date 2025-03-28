@@ -259,9 +259,7 @@ export default {
   align-items: center;
   text-align: center;
 }
-.player-controller {
-  min-height: 60px;
-}
+
 .controll-panel {
   background: rgba(255, 255, 255, 0.138);
   backdrop-filter: blur(30px);
