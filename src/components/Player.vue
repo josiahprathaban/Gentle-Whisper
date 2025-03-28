@@ -33,8 +33,8 @@
             variant="text"
             icon="mdi-book-open-variant-outline"
             :loading="loading"
-            @click="allBooks"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="allBooks"
           />
           <v-btn
             v-if="!loading"
@@ -42,8 +42,8 @@
             icon="mdi-chevron-left"
             :loading="loading"
             :disabled="!verseData.previous"
-            @click="prevVerse"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="prevVerse"
           />
           <div
             v-if="!loading"
@@ -57,56 +57,64 @@
             icon="mdi-chevron-right"
             :loading="loading"
             :disabled="!verseData.next"
-            @click="nextVerse"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="nextVerse"
           />
           <v-btn
             v-if="!isPlaying && !loading"
             variant="text"
             icon="mdi-play"
             :loading="loading"
-            @click="playAudio"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="playAudio"
           />
           <v-btn
             v-else-if="!loading"
             variant="text"
             icon="mdi-pause"
             :loading="loading"
-            @click="pauseAudio"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="pauseAudio"
           />
           <v-btn
             v-if="isFullScreen && !loading"
             variant="text"
             icon="mdi-fullscreen-exit"
             :loading="loading"
-            @click="exitFullScreen"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="exitFullScreen"
           />
           <v-btn
             v-else-if="!loading"
             variant="text"
             icon="mdi-fullscreen"
             :loading="loading"
-            @click="enterFullScreen"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="enterFullScreen"
           />
           <v-btn
             v-if="isPlaying && !loading"
             variant="text"
             icon="mdi-volume-high"
             :loading="loading"
-            @click="toggleAudio"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="toggleAudio"
           />
           <v-btn
             v-else-if="!loading"
             variant="text"
             icon="mdi-volume-off"
             :loading="loading"
-            @click="toggleAudio"
             :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="toggleAudio"
+          />
+          <v-btn
+            v-if="!loading"
+            variant="text"
+            icon="mdi-share-variant-outline"
+            :loading="loading"
+            :size="$vuetify.display.smAndUp ? 'default' : 'small'"
+            @click="shareContent"
           />
         </div>
       </div>
@@ -207,6 +215,28 @@ export default {
       });
       await this.getBibleVerseX();
     },
+    copyToClipboard() {
+      navigator.clipboard.writeText(window.location.href);
+    },
+    shareContent() {
+      if (navigator.share) {
+        // For mobile devices, use the Web Share API
+        navigator
+          .share({
+            title: "Bible Verse",
+            text: "Check out this verse: " + this.verseData.reference,
+            url: window.location.href, // Share the current URL
+          })
+          .then(() => console.log("Shared successfully"))
+          .catch((error) => console.error("Error sharing:", error));
+      } else {
+        // Fallback for desktop (you can implement custom sharing options for social media platforms)
+        const shareUrl = `https://twitter.com/intent/tweet?text=Check%20out%20this%20verse:%20${
+          this.verseData.reference
+        }&url=${encodeURIComponent(window.location.href)}`;
+        window.open(shareUrl, "_blank");
+      }
+    },
   },
 };
 </script>
@@ -226,17 +256,19 @@ export default {
   text-align: center;
 }
 .player-controller {
-  height: 60px;
+  min-height: 60px;
 }
 .controll-panel {
   background: rgba(255, 255, 255, 0.138);
   backdrop-filter: blur(30px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0 10px;
-  border-radius: 30px;
+  border-radius: 300px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   height: 100%;
+  justify-content: center;
 }
 .verse {
   text-align: center;
