@@ -101,7 +101,7 @@
         </v-btn>
       </div>
 
-      <v-card-text
+      <!-- <v-card-text
         v-if="bibleInfo.info || bibleInfo.copyright"
         class="text-body-2 px-0 my-4"
       >
@@ -117,7 +117,7 @@
         >
           {{ bibleInfo.copyright }}
         </div>
-      </v-card-text>
+      </v-card-text> -->
     </v-card>
   </v-container>
   <AppFooter />
